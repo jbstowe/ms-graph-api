@@ -23,7 +23,7 @@ Route::get('/', function () {
 ```
 Or use middleware groups
 ```php
-Route::middleware('admin')->group(function () {
+Route::middleware('ms-auth')->group(function () {
     Route::get('/admin/dashboard', 'AdminController@dashboard');
 });
 ```
