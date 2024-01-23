@@ -1,0 +1,54 @@
+{
+    "name": "joeystowe/ms-graph-api",
+    "description": "Laravel MS Graph API",
+    "keywords": [
+        "joeystowe",
+        "ms-graph-api"
+    ],
+    "homepage": "https://github.com/joeystowe/ms-graph-api",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Joey Stowe",
+            "email": "jbstowe@ua.edu",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "laravel/socialite": "^5.11",
+        "socialiteproviders/microsoft-azure": "^5.1"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.0",
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Joeystowe\\MsGraphApi\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Joeystowe\\MsGraphApi\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Joeystowe\\MsGraphApi\\MsGraphApiServiceProvider"
+            ],
+            "aliases": {
+                "MsGraphApi": "Joeystowe\\MsGraphApi\\MsGraphApiFacade"
+            }
+        }
+    }
+}
