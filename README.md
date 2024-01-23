@@ -38,7 +38,7 @@ Route::middleware('admin')->group(function () {
 'azure' => [
 	'client_id' => env('AZURE_CLIENT_ID'),
 	'client_secret' => env('AZURE_CLIENT_SECRET'),
-	'tenant' => env('AZURE_TENANT_ID')
+	'tenant' => env('AZURE_TENANT_ID'),
 	'redirect' => env('AZURE_REDIRECT_URI'),
 ],
 ...
