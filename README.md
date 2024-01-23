@@ -7,7 +7,7 @@ This adds helper methods to call the MS Graph API and installs a middleware/rout
 You can install the package via composer:
 
 ```bash
-composer require joeystowe/ms-graph-api
+composer require joeystowe/ms-graph-api:dev-master
 ```
 
 ## Usage
