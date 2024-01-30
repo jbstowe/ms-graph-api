@@ -15,9 +15,7 @@ class MsGraphApiServiceProvider extends ServiceProvider
         /*
          * Optional methods to load your package assets
          */
-        // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'ms-graph-api');
-        // $this->loadViewsFrom(__DIR__.'/../resources/views', 'ms-graph-api');
-        // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'ms-graph-api');
         $this->loadRoutesFrom(__DIR__ . '/routes.php');
 
 
@@ -30,9 +28,9 @@ class MsGraphApiServiceProvider extends ServiceProvider
         $router->aliasMiddleware('ms-auth', MicrosoftAuthMiddleware::class);
 
         if ($this->app->runningInConsole()) {
-            $this->publishes([
-                __DIR__ . '/../config/config.php' => config_path('ms-graph-api.php'),
-            ], 'config');
+            // $this->publishes([
+            //     __DIR__ . '/../config/config.php' => config_path('ms-graph-api.php'),
+            // ], 'config');
 
             // Publishing the views.
             /*$this->publishes([
@@ -40,9 +38,9 @@ class MsGraphApiServiceProvider extends ServiceProvider
             ], 'views');*/
 
             // Publishing assets.
-            /*$this->publishes([
-                __DIR__.'/../resources/assets' => public_path('vendor/ms-graph-api'),
-            ], 'assets');*/
+            $this->publishes([
+                __DIR__ . '/../resources/assets' => public_path('vendor/ms-graph-api'),
+            ], 'assets');
 
             // Publishing the translation files.
             /*$this->publishes([

@@ -6,14 +6,6 @@ Route::group(['middleware' => ['web']], function () {
 
 	Route::get('/auth/callback', function () {
 		$oauth_user = \Laravel\Socialite\Facades\Socialite::driver('azure')->user();
-		// $user = (object)[
-		// 	'id' => $oauth_user->getId(),
-		// 	'name' => $oauth_user->getName(),
-		// 	'email' => $oauth_user->getEmail(),
-		// 	'principalName' => $oauth_user->user['userPrincipalName'] ?? null,
-		// 	'bannerUsername' => explode('@', ($oauth_user->user['userPrincipalName'] ?? null))[0] ?? null,
-		// 	'token' => $oauth_user->token,
-		// ];
 
 		$user = [
 			'id' => $oauth_user->getId(),
@@ -51,6 +43,6 @@ Route::group(['middleware' => ['web']], function () {
 
 	Route::get('postLogout', function () {
 		// Ideally you would build a styled logout page
-		return 'You have successfully logged out';
+		return view('ms-graph-api::logout');
 	})->name('postLogout');
 });

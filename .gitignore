@@ -1,3 +1,4 @@
 docker-compose.yml
 vendor
 vendor/*
+.DS_Store
