@@ -72,6 +72,13 @@ If you prefer not to use an instance of the User model you can call:
 dd(Joeystowe\MsGraphApi\LoggedInUser::userRaw());
 ```
 
+#### Logging Out
+Simply hit the '/logout' route to log the user out. After logging out from MS the user will be redirected to a '/postLogout' page. Be sure to set your APP_URL correctly so the "log back in" url will work correctly.
+
+You will also need to publish the assets for the postLogout page to be fully functional:
+```bash
+php artisan vendor:publish --tag=assets --ansi --force
+```
 
 ### Calling Graph API
 ---
