@@ -88,6 +88,8 @@ Joeystowe\MsGraphApi\LoggedInUser::userModel();
 //Fetch a single user attribute (throws exception is property is not found)
 Joeystowe\MsGraphApi\LoggedInUser::userAttribute('principalName')
 //returns "jdoe@ua.edu"
+```
+
 
 
 #### Logging Out
