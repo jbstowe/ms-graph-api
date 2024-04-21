@@ -16,6 +16,7 @@ Route::group(['middleware' => ['web']], function () {
 			'token' => $oauth_user->token,
 		];
 
+		//v0.1-RC1
 		$userModel = new \App\Models\User();
 		$userModel->unguard();
 		$userModel->fill([
