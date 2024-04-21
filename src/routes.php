@@ -16,27 +16,18 @@ Route::group(['middleware' => ['web']], function () {
 			'token' => $oauth_user->token,
 		];
 
-		//v0.1-RC1
-		$userModel = new \App\Models\User();
-		$userModel->unguard();
-		$userModel->fill([
-			'id' => $oauth_user->getId(),
-			'name' => $oauth_user->getName(),
-			'email' => $oauth_user->getEmail(),
-			'principalName' => $oauth_user->user['userPrincipalName'] ?? null,
-			'bannerUsername' => explode('@', ($oauth_user->user['userPrincipalName'] ?? null))[0] ?? null,
-			'token' => $oauth_user->token,
-		]);
-
-		session()->put('user', $userModel);
-		session()->put('user-raw', (object)$user);
+		session()->put('ms:user', (object)$user);
+		session()->put('ms:username', $user['bannerUsername']);
+		session()->put('ms:email', $user['email']);
+		session()->put('ms:principalName', $user['principalName']);
+		session()->put('ms:id', $user['id']);
+		session()->put('ms:session-token', $user['token']);
 
 		return redirect(session()->get('sso_redirect_url') ?? '/');
 	});
 
 
 	Route::get('logout', function () {
-		//  Auth::guard()->logout();
 		session()->flush();
 		$azureLogoutUrl = \Laravel\Socialite\Facades\Socialite::driver('azure')->getLogoutUrl(route('postLogout'));
 		return redirect($azureLogoutUrl);

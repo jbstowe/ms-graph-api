@@ -53,24 +53,42 @@ AZURE_TENANT_ID=<YOUR TENANT ID>
 ...
 ```
 
-#### Access the user
+#### Accessing the user
+The ms-auth middleware sets the following __scoped__ session values
 
 ```php
-dd(Joeystowe\MsGraphApi\LoggedInUser::user());
+session()->put('ms:user', (object)$user);
+session()->put('ms:username', $user['bannerUsername']);
+session()->put('ms:email', $user['email']);
+session()->put('ms:principalName', $user['principalName']);
+session()->put('ms:id', $user['id']);
+session()->put('ms:session-token', $user['token']);
+```
 
-//Returns an instance of \App\Models\User with the following attributes set from the SSO response
-// 	   "id" => "ms user id"
-//     "name" => "Full Name"
-//     "email" => "User's email"
-//     "principalName" => "User's Principal Name"
-//     "bannerUsername" => "User's banner username"
-//     "token" => "token_value"
-```
-If you prefer not to use an instance of the User model you can call:
+You can reference these directly or you can use the __LoggedInUser__ helper class:
+
 ```php
-//Returns an object with the same properties as above set
-dd(Joeystowe\MsGraphApi\LoggedInUser::userRaw());
-```
+// Returns an object with the following properties set
+Joeystowe\MsGraphApi\LoggedInUser::user();
+{
+  "id" => "1111-2222-33333-44444" //ms user id
+  "name" => "John Doe" //Full Name
+  "email" => "john.doe@eng.ua.edu"
+  "principalName" => "jdoe@ua.edu"
+  "bannerUsername" => "jdoe"
+  "token" => "1111-2222-3333-4444" //ms session token
+}
+
+//Fetch users properties as an array
+Joeystowe\MsGraphApi\LoggedInUser::userArray();
+
+//Fetch users properties as a pre-filled User model
+Joeystowe\MsGraphApi\LoggedInUser::userModel();
+
+//Fetch a single user attribute (throws exception is property is not found)
+Joeystowe\MsGraphApi\LoggedInUser::userAttribute('principalName')
+//returns "jdoe@ua.edu"
+
 
 #### Logging Out
 Simply hit the '/logout' route to log the user out. After logging out from MS the user will be redirected to a '/postLogout' page. Be sure to set your APP_URL correctly so the "log back in" url will work correctly.

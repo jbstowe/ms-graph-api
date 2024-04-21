@@ -9,7 +9,7 @@ class MicrosoftAuthMiddleware
 	public function handle($request, Closure $next)
 	{
 		// Perform action
-		if (!session('user')) {
+		if (!session('ms:user')) {
 			session()->flash('sso_redirect_url', url()->current());
 			return \Laravel\Socialite\Facades\Socialite::driver('azure')->redirect();
 		}
