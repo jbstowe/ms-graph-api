@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Facade;
 /**
  * @see \Joeystowe\MsGraphApi\Skeleton\SkeletonClass
  */
-class MsGraphApiFacade extends Facade
+class MsGraphCurrentUserApiFacade extends Facade
 {
     /**
      * Get the registered name of the component.

@@ -47,7 +47,7 @@
                 "Joeystowe\\MsGraphApi\\MsGraphApiServiceProvider"
             ],
             "aliases": {
-                "MsGraphApi": "Joeystowe\\MsGraphApi\\MsGraphApiFacade"
+                "MsGraphApi": "Joeystowe\\MsGraphApi\\MsGraphCurrentUserApiFacade"
             }
         }
     }
