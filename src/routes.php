@@ -7,12 +7,20 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/auth/callback', function () {
 		$oauth_user = \Laravel\Socialite\Facades\Socialite::driver('azure')->user();
 
+		// Extract banner username from UPN
+		$bannerUsername = explode('@', $oauth_user->user['userPrincipalName'] ?? '')[0];
+		if (!empty($bannerUsername)) {
+			$bannerUsername = strtolower($bannerUsername);
+		} else {
+			$bannerUsername = null;
+		}
+
 		$user = [
 			'id' => $oauth_user->getId(),
 			'name' => $oauth_user->getName(),
 			'email' => $oauth_user->getEmail(),
 			'principalName' => $oauth_user->user['userPrincipalName'] ?? null,
-			'bannerUsername' => explode('@', ($oauth_user->user['userPrincipalName'] ?? null))[0] ?? null,
+			'bannerUsername' => $bannerUsername,
 			'token' => $oauth_user->token,
 		];
 
